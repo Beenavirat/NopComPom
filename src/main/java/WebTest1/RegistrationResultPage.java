@@ -9,7 +9,7 @@ public  class RegistrationResultPage extends Utils {
 // method for verifyregistrationsuccess message
     public void verifyUserSeeRegistrationSuccessMessage(){
         assertURL("registerresult");
-      assertTextMessage("Registration not completed","your registration completed",By.cssSelector("div.result"));
+  assertTextMessage("Registration not completed","your registration completed",By.cssSelector("div.result"));
     }
 
 }

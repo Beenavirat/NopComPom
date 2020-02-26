@@ -1,9 +1,11 @@
 package WebTest1;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -36,20 +38,53 @@ public class Utils extends BasePage {
         return driver.findElement(by).getText();
     }
 
-// asserturl
+    // asserturl
     public static void assertURL(String text) {
         Assert.assertTrue(driver.getCurrentUrl().contains(text));
 
     }
+
     //asserttextmessage
-    public static void assertTextMessage(String message,String expected, By by) {
-        String actual= getTextfromElement(by);
-        Assert.assertEquals(message,expected,actual);
+    public static void assertTextMessage(String message, String expected, By by) {
+        String actual = getTextfromElement(by);
+        Assert.assertEquals(message, expected, actual);
     }
 
+    //to scroll and click
+    public static void scrollAndClick(By by) {
+        WebElement element = driver.findElement(by);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        element.click();
 
+    }
+
+    public static void timeDelay(int time) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //  creating method for    selectFromDropDownByVisible Text
+    public static void selectFromDropDownByVisibleText(By by, String text) {
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Select select = new Select(driver.findElement(by));
+        select.selectByVisibleText(text);
+
+    }
+  //  method for enter text
+    public static void enterText(By by, String text) {
+
+        driver.findElement(by).sendKeys(text);
+    }
 }
-
 
 
 

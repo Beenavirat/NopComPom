@@ -3,7 +3,7 @@ package WebTest1;
 import org.junit.After;
 import org.junit.Before;
 
-public class BaseTest {
+public class BaseTest extends Utils {
 
     BrowserSelector browserSelector =new BrowserSelector();
 
@@ -14,7 +14,7 @@ public class BaseTest {
     }
     @After
     public void closeBrowser(){
-       // browserSelector.closeBrowser();
+       //browserSelector.closeBrowser();
     }
 
 
