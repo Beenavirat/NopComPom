@@ -7,6 +7,8 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static WebTest1.AboutnopComAddComment.*;
+
 public class Testsuite extends BaseTest {
 
 
@@ -15,6 +17,14 @@ public class Testsuite extends BaseTest {
     RegistrationResultPage registrationResultPage = new RegistrationResultPage();
     ComputerPage  computerPage  = new ComputerPage();
     Bookspage bookspage = new Bookspage();
+    JewelryPage jewelryPage = new JewelryPage();
+    GuestCheckout guestCheckout = new GuestCheckout();
+    ShippingAddress shippingAddress = new ShippingAddress();
+    PaymentMethod paymentMethod = new PaymentMethod();
+    CheckoutResult checkOutResult = new CheckoutResult();
+    NewsAddPage newsAddPage = new NewsAddPage();
+
+
     // create changecurrency object
    ChangeCurrency changeCurrency =new ChangeCurrency();
    // create changecurrencyresultpage object
@@ -32,6 +42,7 @@ public class Testsuite extends BaseTest {
         //fill up registration button
         registrationPage.verifyUserIsOnRegisterPage();
         registrationPage.userEntersRegistrationDetails();
+        registrationPage.clickonRegisterButton();
 
         // verify registration success message
         registrationResultPage.verifyUserSeeRegistrationSuccessMessage();
@@ -58,12 +69,41 @@ public class Testsuite extends BaseTest {
 
    homePage.clickOnBooks();
    // click on add to cart
-   bookspage.clickOnaddtocart();
+  // bookspage.clickOnaddtocart();
    //click on shopping cart
-     bookspage.clickOnShoppingCart();
-
+   //  bookspage.clickOnShoppingCart();
+   bookspage.scrolldownbandclickonaddtocart();
 
     }
+
+@Test
+    public void verifyGuestUserShouldBeAbleToCheckOutSuccessfully() {
+        homePage.clickOnJewellery();
+        jewelryPage.verifyUserIsOnJewelryPage();
+        jewelryPage.addToCartProduct();
+        guestCheckout.checkoutAsGuest();
+    try {
+        Thread.sleep(2000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+
+
+        shippingAddress.userShippingAddress();
+    try {
+        Thread.sleep(2000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+        paymentMethod.userChoosePaymentMethod();
+        checkOutResult.verifycheckoutsuccessmessage();
+
+    }
+
+
+
+
 
 
 
@@ -87,20 +127,17 @@ public class Testsuite extends BaseTest {
 
 
 
-@Test
+
+
   // verify guest user  should add comment
-    public void guestUserShouldAbleToAddComment(){
-        homePage.scrolldownbandclickonnopcomdetails();
-     // AboutnopComAddComment.addComments();
 
-    }
 
 @Test
-public void GuestUserShouldBeAbleToAddComments(){
-       // AboutnopComAddComment.addComments();
+public void GuestUserShouldBeAbleToAddComments() {
+    homePage.clickOnViewNewsArchive();
+    newsAddPage.userClickOnDetails();
+    newsAddPage.verifysuccessmessageofcomment();
 }
-
-
 
 
 

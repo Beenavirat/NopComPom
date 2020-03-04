@@ -79,12 +79,33 @@ public class Utils extends BasePage {
         select.selectByVisibleText(text);
 
     }
-  //  method for enter text
-    public static void enterText(By by, String text) {
 
-        driver.findElement(by).sendKeys(text);
+
+//select from dropdown by value
+    public static void selectFromDropdownByValue(By by, String text) {
+        Select select = new Select(driver.findElement(by));
+        select.selectByValue(text);
     }
+
+    //select from dropdown by index method
+    public static void selectFromDropdownByIndex(By by, int index) {
+        Select select = new Select(driver.findElement(by));
+        select.selectByIndex(index);
+    }
+
+
+
+    // method for enter text
+    public static void enterText(By by, String text) {
+        driver.findElement(by).sendKeys(text);
+        waitForClickable(by, 60);
 }
+
+    private static void waitForClickable(By by, int i) {
+        //WebDriverWait wait = new WebDriverWait(driver, time);
+        //wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+    }
 
 
 
